@@ -25,37 +25,37 @@ const videos: Video[] = [
   {
     id: "1",
     videoUrl: video1,
-    posterUrl: "",
+    posterUrl: video1,
     title: "Exemple vidéo 1"
   },
   {
     id: "2",
     videoUrl: video2,
-    posterUrl: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=711&fit=crop",
+    posterUrl: video2,
     title: "Exemple vidéo 2"
   },
   {
     id: "3",
     videoUrl: video3,
-    posterUrl: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&h=711&fit=crop",
+    posterUrl: video3,
     title: "Exemple vidéo 3"
   },
   {
     id: "4",
     videoUrl: video4,
-    posterUrl: "https://images.unsplash.com/photo-1522152302542-71a8e5172aa1?w=400&h=711&fit=crop",
+    posterUrl: video4,
     title: "Exemple vidéo 4"
   },
   {
     id: "5",
     videoUrl: video5,
-    posterUrl: "https://images.unsplash.com/photo-1516542076529-1ea3854896f2?w=400&h=711&fit=crop",
+    posterUrl: video5,
     title: "Exemple vidéo 5"
   },
   {
     id: "6",
     videoUrl: video6,
-    posterUrl: "https://images.unsplash.com/photo-1516542076529-1ea3854896f2?w=400&h=711&fit=crop",
+    posterUrl: video6,
     title: "Exemple vidéo 6"
   },
 ];
