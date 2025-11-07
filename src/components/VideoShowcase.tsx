@@ -5,7 +5,7 @@ import video3 from "../assets/3.mp4";
 import video4 from "../assets/4.mp4";
 import video5 from "../assets/5.mp4";
 import video6 from "../assets/6.mp4";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
 interface Video {
   id: string;
   videoUrl: string;
@@ -20,7 +21,6 @@ interface Video {
   title?: string;
 }
 
-// Exemple de vidéos - vous pouvez les remplacer par vos propres vidéos
 const videos: Video[] = [
   {
     id: "1",
@@ -60,8 +60,18 @@ const videos: Video[] = [
   },
 ];
 
-const VideoCard = ({ video }: { video: Video }) => {
-  const [isMuted, setIsMuted] = useState(true);
+const VideoCard = ({ 
+  video, 
+  isPlaying, 
+  onPlay,
+  onPause
+}: { 
+  video: Video; 
+  isPlaying: boolean;
+  onPlay: (videoId: string) => void;
+  onPause: () => void;
+}) => {
+  const [isMuted, setIsMuted] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -92,10 +102,31 @@ const VideoCard = ({ video }: { video: Video }) => {
     };
   }, [isLoaded]);
 
-  const toggleSound = () => {
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+        setIsMuted(false); // Reset muted state when video stops
+      }
+    }
+  }, [isPlaying]);
+
+  const toggleSound = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVideoClick = () => {
+    if (isPlaying) {
+      onPause();
+    } else {
+      onPlay(video.id);
     }
   };
 
@@ -105,14 +136,14 @@ const VideoCard = ({ video }: { video: Video }) => {
         {isLoaded ? (
           <video
             ref={videoRef}
-            className="w-full h-full object-cover"
-            autoPlay
+            className="w-full h-full object-cover cursor-pointer"
             playsInline
             loop
             muted={isMuted}
             preload="metadata"
             poster={video.posterUrl}
             aria-label={video.title}
+            onClick={handleVideoClick}
           >
             <source src={video.videoUrl} type="video/mp4" />
             Votre navigateur ne supporte pas la balise vidéo.
@@ -121,15 +152,41 @@ const VideoCard = ({ video }: { video: Video }) => {
           <img
             src={video.posterUrl}
             alt={video.title || "Aperçu vidéo"}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover cursor-pointer"
             loading="lazy"
+            onClick={handleVideoClick}
           />
         )}
 
-        {isLoaded && (
+        {/* Bouton Play/Pause central */}
+        {!isPlaying && (
+          <div
+            onClick={handleVideoClick}
+            className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer"
+          >
+            <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors">
+              <Play className="w-8 h-8 text-black ml-1" fill="currentColor" />
+            </div>
+          </div>
+        )}
+
+        {/* Bouton Pause qui apparaît au hover quand la vidéo joue */}
+        {isPlaying && (
+          <div
+            onClick={handleVideoClick}
+            className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
+          >
+            <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors">
+              <Pause className="w-8 h-8 text-black" fill="currentColor" />
+            </div>
+          </div>
+        )}
+
+        {/* Bouton de contrôle du son */}
+        {isLoaded && isPlaying && (
           <button
             onClick={toggleSound}
-            className="absolute bottom-4 right-4 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors opacity-0 group-hover:opacity-100"
+            className="absolute bottom-4 right-4 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors opacity-0 group-hover:opacity-100 z-10"
             aria-label={isMuted ? "Activer le son" : "Désactiver le son"}
           >
             {isMuted ? (
@@ -141,7 +198,7 @@ const VideoCard = ({ video }: { video: Video }) => {
         )}
 
         {video.title && (
-          <div className="absolute top-4 left-4 right-4">
+          <div className="absolute top-4 left-4 right-4 pointer-events-none">
             <h3 className="text-white text-sm font-semibold drop-shadow-lg">
               {video.title}
             </h3>
@@ -155,6 +212,7 @@ const VideoCard = ({ video }: { video: Video }) => {
 const VideoShowcase = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -181,6 +239,14 @@ const VideoShowcase = () => {
       }
     };
   }, []);
+
+  const handlePlay = (videoId: string) => {
+    setPlayingVideoId(videoId);
+  };
+
+  const handlePause = () => {
+    setPlayingVideoId(null);
+  };
 
   return (
     <section
@@ -213,7 +279,12 @@ const VideoShowcase = () => {
                     key={video.id}
                     className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
                   >
-                    <VideoCard video={video} />
+                    <VideoCard 
+                      video={video} 
+                      isPlaying={playingVideoId === video.id}
+                      onPlay={handlePlay}
+                      onPause={handlePause}
+                    />
                   </CarouselItem>
                 ))}
               </CarouselContent>
