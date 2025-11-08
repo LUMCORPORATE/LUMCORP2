@@ -76,6 +76,7 @@ const VideoCard = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Charge la vidéo et affiche la première frame
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -102,14 +103,50 @@ const VideoCard = ({
     };
   }, [isLoaded]);
 
+  // Charge la première frame de la vidéo
+  useEffect(() => {
+    if (isLoaded && videoRef.current) {
+      const video = videoRef.current;
+      
+      const handleLoadedMetadata = () => {
+        // Force la vidéo à se positionner à 0 et afficher la première frame
+        video.currentTime = 0;
+      };
+
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      video.load();
+
+      return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      };
+    }
+  }, [isLoaded]);
+
+  // Gestion play/pause avec son activé automatiquement
   useEffect(() => {
     if (videoRef.current) {
+      const video = videoRef.current;
+      
       if (isPlaying) {
-        videoRef.current.play();
+        video.currentTime = 0;
+        video.muted = false; // FORCE le son à être activé
+        setIsMuted(false); // Met à jour l'état
+        
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.log("Erreur de lecture vidéo:", error);
+            // Si le navigateur bloque (rare sur mobile), essaye avec mute
+            video.muted = true;
+            setIsMuted(true);
+            video.play();
+          });
+        }
       } else {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-        setIsMuted(false); // Reset muted state when video stops
+        video.pause();
+        video.currentTime = 0;
+        video.muted = false; // Garde le son activé pour la prochaine lecture
+        setIsMuted(false);
       }
     }
   }, [isPlaying]);
@@ -117,8 +154,9 @@ const VideoCard = ({
   const toggleSound = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const newMutedState = !isMuted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
     }
   };
 
@@ -133,30 +171,19 @@ const VideoCard = ({
   return (
     <div ref={containerRef} className="relative w-full h-full group">
       <div className="aspect-[9/16] relative rounded-lg overflow-hidden bg-muted border border-border shadow-lg">
-        {isLoaded ? (
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover cursor-pointer"
-            playsInline
-            loop
-            muted={isMuted}
-            preload="metadata"
-            poster={video.posterUrl}
-            aria-label={video.title}
-            onClick={handleVideoClick}
-          >
-            <source src={video.videoUrl} type="video/mp4" />
-            Votre navigateur ne supporte pas la balise vidéo.
-          </video>
-        ) : (
-          <img
-            src={video.posterUrl}
-            alt={video.title || "Aperçu vidéo"}
-            className="w-full h-full object-cover cursor-pointer"
-            loading="lazy"
-            onClick={handleVideoClick}
-          />
-        )}
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover cursor-pointer"
+          playsInline
+          loop
+          muted={isMuted}
+          preload="metadata"
+          aria-label={video.title}
+          onClick={handleVideoClick}
+        >
+          <source src={video.videoUrl} type="video/mp4" />
+          Votre navigateur ne supporte pas la balise vidéo.
+        </video>
 
         {/* Bouton Play/Pause central */}
         {!isPlaying && (
@@ -182,11 +209,11 @@ const VideoCard = ({
           </div>
         )}
 
-        {/* Bouton de contrôle du son */}
+        {/* Bouton de contrôle du son - Visible sur mobile */}
         {isLoaded && isPlaying && (
           <button
             onClick={toggleSound}
-            className="absolute bottom-4 right-4 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors opacity-0 group-hover:opacity-100 z-10"
+            className="absolute bottom-4 right-4 p-3 rounded-full bg-background/90 backdrop-blur-sm border border-border hover:bg-background transition-colors shadow-lg z-10 md:opacity-0 md:group-hover:opacity-100"
             aria-label={isMuted ? "Activer le son" : "Désactiver le son"}
           >
             {isMuted ? (
