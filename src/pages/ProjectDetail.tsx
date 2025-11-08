@@ -38,8 +38,8 @@ import villeGeneveHero from "@/assets/ville-geneve-hero.png";
 import villeGeneveSolution from "@/assets/ville-geneve-solution-landscape.png";
 import villeGeneveSolutionMobile from "@/assets/ville-geneve-solution-mobile.png";
 import logoMobilite360 from "@/assets/logo-mobilite360-new.png";
-import mobilite360Solution from "@/assets/mobilite-360-solution-landscape.png";
-import mobilite360SolutionMobile from "@/assets/mobilite-360-solution-mobile.png";
+import mobilite360Solution from "@/assets/mobilite360-solution-landscape.png";
+import mobilite360SolutionMobile from "@/assets/mobilite360-solution-mobile.png";
 
 interface Benefit {
   icon: string;
@@ -597,20 +597,15 @@ const ProjectDetail = () => {
               </Button>
             </div>
 
-            {/* HERO IMAGE – mobile plein écran, desktop comme avant */}
             <div className="relative">
-              <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-0 md:p-12">
-                {/* Wrapper responsive: en mobile on fixe la hauteur pour afficher toute l'image en object-contain */}
-                <div className="w-full h-[72vh] sm:h-[80vh] md:h-auto md:aspect-square">
-                  <img
-                    src={project.heroImage || project.logo}
-                    alt={project.name}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 p-12 flex items-center justify-center">
+                <img
+                  src={project.heroImage || project.logo}
+                  alt={project.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
-            {/* FIN HERO IMAGE */}
           </div>
         </div>
       </section>
