@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,6 +19,7 @@ const contactSchema = z.object({
 
 const Contact = () => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -47,36 +48,61 @@ const Contact = () => {
       // Validate form data
       contactSchema.parse(formData);
 
-      // Send email via backend function
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi du message");
+      const form = formRef.current;
+      if (!form) {
+        throw new Error("Formulaire introuvable");
       }
 
-      toast({
-        title: "Message envoyé!",
-        description: "Nous vous répondrons dans les plus brefs délais.",
+      const formDataToSend = new FormData(form);
+
+      // Web3Forms configuration
+      formDataToSend.append("access_key", "75bc1c55-d538-416c-9882-dcf141c24a45");
+      formDataToSend.append("to", "contact@lumcorporate.com");
+      formDataToSend.append("subject", "Nouveau message de contact - LUM");
+      formDataToSend.append("from_name", `${formData.firstName} ${formData.lastName}`);
+      
+      // Construct message
+      const messageContent = `
+Nouveau message de contact
+
+Prénom: ${formData.firstName}
+Nom: ${formData.lastName}
+Email: ${formData.email}
+Téléphone: ${formData.phone}
+
+Message:
+${formData.message}
+      `;
+      
+      formDataToSend.set("message", messageContent);
+      formDataToSend.append("botcheck", "");
+
+      // Send to Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSend,
       });
 
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Message envoyé!",
+          description: "Nous vous répondrons dans les plus brefs délais.",
+        });
+
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        form.reset();
+      } else {
+        throw new Error(data.message || "Erreur lors de l'envoi du message");
+      }
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
@@ -201,7 +227,10 @@ const Contact = () => {
 
             {/* Right Column - Form */}
             <div className="bg-card border-2 border-border rounded-3xl p-8 lg:p-12 hover:border-primary/50 transition-colors">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                {/* Hidden fields for Web3Forms */}
+                <input type="hidden" name="botcheck" value="" />
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* First Name */}
                   <div className="space-y-2">
