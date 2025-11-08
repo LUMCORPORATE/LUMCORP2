@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Users, Eye, CheckCircle2, Clock, Target, Award, TrendingUp } from "lucide-react";
+import { ArrowLeft, Users, CheckCircle2, Clock, Target, Award, TrendingUp } from "lucide-react";
 
 // Import client logos
 import logoAtman from "@/assets/logo-atman-therapie.jpg";
@@ -102,26 +102,10 @@ const projectsData: Record<string, Project> = {
     benefitsTitle: "04. Les Bénéfices",
     benefitsSubtitle: "Pourquoi Cette Stratégie Fonctionne",
     benefits: [
-      {
-        icon: "bolt",
-        title: "Visibilité Accrue",
-        description: "Une présence digitale forte qui attire et engage votre audience cible."
-      },
-      {
-        icon: "clock",
-        title: "Gain de Temps",
-        description: "Une équipe dédiée qui gère tous les aspects de votre présence digitale."
-      },
-      {
-        icon: "check",
-        title: "Contenu Authentique",
-        description: "Des publications qui reflètent fidèlement vos valeurs et votre expertise."
-      },
-      {
-        icon: "users",
-        title: "Engagement Communautaire",
-        description: "Une communauté engagée qui se reconnaît dans votre message."
-      }
+      { icon: "bolt", title: "Visibilité Accrue", description: "Une présence digitale forte qui attire et engage votre audience cible." },
+      { icon: "clock", title: "Gain de Temps", description: "Une équipe dédiée qui gère tous les aspects de votre présence digitale." },
+      { icon: "check", title: "Contenu Authentique", description: "Des publications qui reflètent fidèlement vos valeurs et votre expertise." },
+      { icon: "users", title: "Engagement Communautaire", description: "Une communauté engagée qui se reconnaît dans votre message." }
     ],
     images: [logoAtman],
   },
@@ -151,26 +135,10 @@ const projectsData: Record<string, Project> = {
     benefitsTitle: "04. L'Impact",
     benefitsSubtitle: "Du contenus optimisés",
     benefits: [
-      {
-        icon: "target",
-        title: "Audience Ciblée",
-        description: "Attraction d'une communauté passionnée et engagée dans le fitness."
-      },
-      {
-        icon: "bolt",
-        title: "Contenu Motivant",
-        description: "Des vidéos qui inspirent et encouragent la transformation personnelle."
-      },
-      {
-        icon: "check",
-        title: "Authenticité",
-        description: "Mise en avant de transformations réelles et de témoignages clients."
-      },
-      {
-        icon: "users",
-        title: "Communauté Active",
-        description: "Engagement multiplié et fidélisation de l'audience."
-      }
+      { icon: "target", title: "Audience Ciblée", description: "Attraction d'une communauté passionnée et engagée dans le fitness." },
+      { icon: "bolt", title: "Contenu Motivant", description: "Des vidéos qui inspirent et encouragent la transformation personnelle." },
+      { icon: "check", title: "Authenticité", description: "Mise en avant de transformations réelles et de témoignages clients." },
+      { icon: "users", title: "Communauté Active", description: "Engagement multiplié et fidélisation de l'audience." }
     ],
     images: [logoKingKong],
   },
@@ -189,26 +157,10 @@ const projectsData: Record<string, Project> = {
     solutionImageMobile: kurkumaMissProvence,
     results: ["+25'000 nouveaux clients", "+3,5 ROAS", "+1,5M de CA en 10 mois"],
     benefits: [
-      {
-        icon: "bolt",
-        title: "ROI Exceptionnel",
-        description: "Un retour sur investissement publicitaire de 3,5x avec une croissance soutenue."
-      },
-      {
-        icon: "users",
-        title: "Acquisition Massive",
-        description: "25'000 nouveaux clients acquis grâce à des campagnes ciblées."
-      },
-      {
-        icon: "trending",
-        title: "Croissance Rapide",
-        description: "1,5M de CA généré en 10 mois avec une stratégie e-commerce optimisée."
-      },
-      {
-        icon: "check",
-        title: "Optimisation Globale",
-        description: "Amélioration complète de l'entonnoir de vente et des marges."
-      }
+      { icon: "bolt", title: "ROI Exceptionnel", description: "Un retour sur investissement publicitaire de 3,5x avec une croissance soutenue." },
+      { icon: "users", title: "Acquisition Massive", description: "25'000 nouveaux clients acquis grâce à des campagnes ciblées." },
+      { icon: "trending", title: "Croissance Rapide", description: "1,5M de CA généré en 10 mois avec une stratégie e-commerce optimisée." },
+      { icon: "check", title: "Optimisation Globale", description: "Amélioration complète de l'entonnoir de vente et des marges." }
     ],
     images: [logoKurkuma],
   },
@@ -225,26 +177,10 @@ const projectsData: Record<string, Project> = {
     solution: "Design moderne avec des animations fluides et une mise en avant de nos réalisations.",
     results: ["40+ projets livrés", "95% de clients satisfaits", "Croissance continue"],
     benefits: [
-      {
-        icon: "bolt",
-        title: "Innovation Créative",
-        description: "Un design moderne qui reflète l'innovation et la créativité de notre approche."
-      },
-      {
-        icon: "target",
-        title: "Résultats Mesurables",
-        description: "Une approche data-driven qui garantit des résultats concrets."
-      },
-      {
-        icon: "check",
-        title: "Expertise Reconnue",
-        description: "40+ projets réussis et un taux de satisfaction client de 95%."
-      },
-      {
-        icon: "users",
-        title: "Accompagnement Complet",
-        description: "Une équipe dédiée qui vous guide à chaque étape."
-      }
+      { icon: "bolt", title: "Innovation Créative", description: "Un design moderne qui reflète l'innovation et la créativité de notre approche." },
+      { icon: "target", title: "Résultats Mesurables", description: "Une approche data-driven qui garantit des résultats concrets." },
+      { icon: "check", title: "Expertise Reconnue", description: "40+ projets réussis et un taux de satisfaction client de 95%." },
+      { icon: "users", title: "Accompagnement Complet", description: "Une équipe dédiée qui vous guide à chaque étape." }
     ],
     images: [logoLum],
   },
@@ -263,26 +199,10 @@ const projectsData: Record<string, Project> = {
     solutionImageMobile: mielAmbreSolutionMobile,
     results: ["+1800 abonnés", "+500'000 vus", "Des bases solides et une nouvelle renommée"],
     benefits: [
-      {
-        icon: "users",
-        title: "Communauté Engagée",
-        description: "1800 nouveaux abonnés qualifiés et activement engagés."
-      },
-      {
-        icon: "bolt",
-        title: "Visibilité Retrouvée",
-        description: "500'000 vues générées avec un contenu authentique et impactant."
-      },
-      {
-        icon: "check",
-        title: "Écosystème Structuré",
-        description: "Une stratégie cohérente sur tous les canaux digitaux."
-      },
-      {
-        icon: "trending",
-        title: "Nouvelle Renommée",
-        description: "Repositionnement de la marque avec une image moderne et attractive."
-      }
+      { icon: "users", title: "Communauté Engagée", description: "1800 nouveaux abonnés qualifiés et activement engagés." },
+      { icon: "bolt", title: "Visibilité Retrouvée", description: "500'000 vues générées avec un contenu authentique et impactant." },
+      { icon: "check", title: "Écosystème Structuré", description: "Une stratégie cohérente sur tous les canaux digitaux." },
+      { icon: "trending", title: "Nouvelle Renommée", description: "Repositionnement de la marque avec une image moderne et attractive." }
     ],
     images: [logoMielAmbre],
   },
@@ -303,26 +223,10 @@ const projectsData: Record<string, Project> = {
     solutionImageMobile: muglerSolutionMobile,
     results: ["Gain de visibilité", 'Certifié "MUGLER MUSE"', "Campagne validée"],
     benefits: [
-      {
-        icon: "target",
-        title: "Prestige Luxe",
-        description: "Une campagne d'influence pour une maison de luxe prestigieuse."
-      },
-      {
-        icon: "bolt",
-        title: "Créativité Audacieuse",
-        description: "Un univers visuel unique mélangeant magie et dark sensuality."
-      },
-      {
-        icon: "check",
-        title: "Validation Officielle",
-        description: "Certification 'MUGLER MUSE' et approbation de la campagne."
-      },
-      {
-        icon: "users",
-        title: "Impact Visibilité",
-        description: "Gain de visibilité majeur pour la marque et le produit."
-      }
+      { icon: "target", title: "Prestige Luxe", description: "Une campagne d'influence pour une maison de luxe prestigieuse." },
+      { icon: "bolt", title: "Créativité Audacieuse", description: "Un univers visuel unique mélangeant magie et dark sensuality." },
+      { icon: "check", title: "Validation Officielle", description: "Certification 'MUGLER MUSE' et approbation de la campagne." },
+      { icon: "users", title: "Impact Visibilité", description: "Gain de visibilité majeur pour la marque et le produit." }
     ],
     images: [logoMugler],
   },
@@ -346,26 +250,10 @@ const projectsData: Record<string, Project> = {
       "Des bases solides qui leur ont permis d'avoir la lumière qu'ils méritaient",
     ],
     benefits: [
-      {
-        icon: "users",
-        title: "Partenariats Prestigieux",
-        description: "Collaborations établies avec de grandes personnalités publiques."
-      },
-      {
-        icon: "bolt",
-        title: "Visibilité Massive",
-        description: "450'000 vues générées grâce à une stratégie d'influence efficace."
-      },
-      {
-        icon: "check",
-        title: "Structure Solide",
-        description: "Mise en place d'une base de scaling pour une croissance durable."
-      },
-      {
-        icon: "trending",
-        title: "Reconnaissance Méritée",
-        description: "Une renommée établie dans le secteur des médias."
-      }
+      { icon: "users", title: "Partenariats Prestigieux", description: "Collaborations établies avec de grandes personnalités publiques." },
+      { icon: "bolt", title: "Visibilité Massive", description: "450'000 vues générées grâce à une stratégie d'influence efficace." },
+      { icon: "check", title: "Structure Solide", description: "Mise en place d'une base de scaling pour une croissance durable." },
+      { icon: "trending", title: "Reconnaissance Méritée", description: "Une renommée établie dans le secteur des médias." }
     ],
     images: [logoNvadt],
   },
@@ -386,26 +274,10 @@ const projectsData: Record<string, Project> = {
     solutionImageMobile: tacosTacosSolutionMobile,
     results: ["Une hausse du chiffre d'affaires", "Un visuel rajeuni et modernisé", "Un local redynamisé"],
     benefits: [
-      {
-        icon: "trending",
-        title: "Hausse du CA",
-        description: "Augmentation significative du chiffre d'affaires grâce à une expérience client optimisée."
-      },
-      {
-        icon: "bolt",
-        title: "Design Moderne",
-        description: "Un visuel rajeuni qui attire une clientèle jeune et dynamique."
-      },
-      {
-        icon: "check",
-        title: "Expérience Interactive",
-        description: "Animations vidéo sur bornes qui transforment l'acte de commande."
-      },
-      {
-        icon: "users",
-        title: "Local Redynamisé",
-        description: "Un espace modernisé qui crée une expérience mémorable."
-      }
+      { icon: "trending", title: "Hausse du CA", description: "Augmentation significative du chiffre d'affaires grâce à une expérience client optimisée." },
+      { icon: "bolt", title: "Design Moderne", description: "Un visuel rajeuni qui attire une clientèle jeune et dynamique." },
+      { icon: "check", title: "Expérience Interactive", description: "Animations vidéo sur bornes qui transforment l'acte de commande." },
+      { icon: "users", title: "Local Redynamisé", description: "Un espace modernisé qui crée une expérience mémorable." }
     ],
     images: [logoTacosTacos],
   },
@@ -422,26 +294,10 @@ const projectsData: Record<string, Project> = {
     solution: "Plateforme intuitive avec ressources pédagogiques et mise en relation facilitée.",
     results: ["+800% d'inscriptions", "+500% de placements", "Partenariats avec 50+ entreprises"],
     benefits: [
-      {
-        icon: "trending",
-        title: "Croissance Explosive",
-        description: "800% d'augmentation des inscriptions sur la plateforme."
-      },
-      {
-        icon: "users",
-        title: "Placements Réussis",
-        description: "500% d'augmentation des placements professionnels."
-      },
-      {
-        icon: "check",
-        title: "Réseau Étendu",
-        description: "Partenariats établis avec plus de 50 entreprises."
-      },
-      {
-        icon: "bolt",
-        title: "Accessibilité",
-        description: "Une plateforme intuitive qui donne confiance aux chercheurs d'emploi."
-      }
+      { icon: "trending", title: "Croissance Explosive", description: "800% d'augmentation des inscriptions sur la plateforme." },
+      { icon: "users", title: "Placements Réussis", description: "500% d'augmentation des placements professionnels." },
+      { icon: "check", title: "Réseau Étendu", description: "Partenariats établis avec plus de 50 entreprises." },
+      { icon: "bolt", title: "Accessibilité", description: "Une plateforme intuitive qui donne confiance aux chercheurs d'emploi." }
     ],
     images: [logoTremplinJob],
   },
@@ -465,26 +321,10 @@ const projectsData: Record<string, Project> = {
       "Un cours renouvelé par le client",
     ],
     benefits: [
-      {
-        icon: "users",
-        title: "Satisfaction Élèves",
-        description: "100% des participants satisfaits de la formation."
-      },
-      {
-        icon: "bolt",
-        title: "Compétences Acquises",
-        description: "Meilleure compréhension des stratégies de visibilité digitale."
-      },
-      {
-        icon: "check",
-        title: "Langage Accessible",
-        description: "Un contenu adapté à tous les niveaux de compétence."
-      },
-      {
-        icon: "target",
-        title: "Cours Renouvelé",
-        description: "Le Bureau Culturel renouvelle sa confiance pour de nouvelles sessions."
-      }
+      { icon: "users", title: "Satisfaction Élèves", description: "100% des participants satisfaits de la formation." },
+      { icon: "bolt", title: "Compétences Acquises", description: "Meilleure compréhension des stratégies de visibilité digitale." },
+      { icon: "check", title: "Langage Accessible", description: "Un contenu adapté à tous les niveaux de compétence." },
+      { icon: "target", title: "Cours Renouvelé", description: "Le Bureau Culturel renouvelle sa confiance pour de nouvelles sessions." }
     ],
     images: [logoVilleGeneve],
   },
@@ -507,26 +347,10 @@ const projectsData: Record<string, Project> = {
       "La demande a été réalisée à la perfection",
     ],
     benefits: [
-      {
-        icon: "check",
-        title: "Client Satisfait",
-        description: "Une entreprise pleinement satisfaite du résultat final."
-      },
-      {
-        icon: "bolt",
-        title: "Design Épuré",
-        description: "Un logo raffiné qui intègre tous les services de l'entreprise."
-      },
-      {
-        icon: "target",
-        title: "Identité Professionnelle",
-        description: "Une apparence élégante qui renforce la crédibilité."
-      },
-      {
-        icon: "users",
-        title: "Demande Parfaite",
-        description: "Une réalisation qui correspond exactement aux attentes."
-      }
+      { icon: "check", title: "Client Satisfait", description: "Une entreprise pleinement satisfaite du résultat final." },
+      { icon: "bolt", title: "Design Épuré", description: "Un logo raffiné qui intègre tous les services de l'entreprise." },
+      { icon: "target", title: "Identité Professionnelle", description: "Une apparence élégante qui renforce la crédibilité." },
+      { icon: "users", title: "Demande Parfaite", description: "Une réalisation qui correspond exactement aux attentes." }
     ],
     images: [logoMobilite360],
   },
@@ -537,7 +361,6 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = projectId ? projectsData[projectId] : null;
 
-  // Scroll to top when component mounts or projectId changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [projectId]);
@@ -597,15 +420,22 @@ const ProjectDetail = () => {
               </Button>
             </div>
 
-            {/* HERO IMAGE – mobile plein écran, desktop comme avant */}
+            {/* HERO IMAGE – mobile plein écran visible sans crop, anti-100vh mobile */}
             <div className="relative">
               <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-0 md:p-12">
-                {/* Wrapper responsive: en mobile on fixe la hauteur pour afficher toute l'image en object-contain */}
-                <div className="w-full h-[72vh] sm:h-[80vh] md:h-auto md:aspect-square">
+                <div
+                  className="
+                    w-full
+                    min-h-[70vh]
+                    [@supports(height:100svh)]:min-h-[75svh]
+                    md:min-h-0 md:aspect-square
+                    flex items-center justify-center
+                  "
+                >
                   <img
                     src={project.heroImage || project.logo}
                     alt={project.name}
-                    className="w-full h-full object-contain"
+                    className="block max-w-full max-h-full w-auto h-auto object-contain"
                   />
                 </div>
               </div>
@@ -674,7 +504,7 @@ const ProjectDetail = () => {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-3xl blur-3xl"></div>
             <div className="relative bg-card rounded-3xl p-4 md:p-16 border border-border">
-              {/* Mobile - format adaptatif */}
+              {/* Mobile */}
               <div className="md:hidden rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center min-h-[400px]">
                 <img
                   src={project.solutionImageMobile || project.logo}
@@ -682,7 +512,7 @@ const ProjectDetail = () => {
                   className="w-full h-auto object-contain p-4"
                 />
               </div>
-              {/* Desktop - format vidéo */}
+              {/* Desktop */}
               <div className="hidden md:block aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50">
                 <img
                   src={project.solutionImage || project.logo}
@@ -690,7 +520,6 @@ const ProjectDetail = () => {
                   className="w-full h-full object-contain p-8"
                 />
               </div>
-              {/* Caption for Kurkuma project */}
               {project.id === "kurkuma" && project.solutionImage && (
                 <p className="text-center text-sm text-muted-foreground mt-4 italic">
                   Collaboration avec Miss Provence lors de l'événement Miss France
@@ -701,7 +530,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Section 4: Résultats & Impact - Grid Layout */}
+      {/* Section 4: Résultats & Impact */}
       <section className="py-20 px-6 bg-card">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
@@ -737,7 +566,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Section 5: Feature Comparison / Benefits Grid */}
+      {/* Section 5: Bénéfices */}
       {project.benefits && project.benefits.length > 0 && (
         <section className="py-20 px-6 bg-background">
           <div className="max-w-7xl mx-auto">
@@ -776,12 +605,7 @@ const ProjectDetail = () => {
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                         <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d={getIconPath(benefit.icon)}
-                          />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={getIconPath(benefit.icon)} />
                         </svg>
                       </div>
                       <h3 className="text-xl font-bold text-foreground">{benefit.title}</h3>
@@ -795,7 +619,7 @@ const ProjectDetail = () => {
         </section>
       )}
 
-      {/* CTA Section - Call to Action */}
+      {/* CTA Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-primary/5 via-card to-primary/5">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
