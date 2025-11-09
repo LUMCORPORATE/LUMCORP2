@@ -121,9 +121,9 @@ All colors MUST be HSL.
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee { animation: none; }
   }
-}
-
-@media (max-width: 768px) {
+  
+  /* Correction pour les images hero sur mobile - empêcher le rognage */
+  @media (max-width: 768px) {
     .project-hero-container {
       height: auto !important;
       max-height: none !important;
@@ -138,4 +138,17 @@ All colors MUST be HSL.
       object-fit: contain !important;
       max-height: none !important;
     }
+    
+    /* Correction spécifique pour les images d'arrière-plan */
+    [class*="background-component_background"] {
+      min-height: 50vh !important;
+      background-position: center center !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+    }
+    
+    [class*="column-component_column"] {
+      min-height: 50vh !important;
+    }
+  }
 }
